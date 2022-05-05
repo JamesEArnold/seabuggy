@@ -1,0 +1,2 @@
+# seabuggy
+OpenSea NFT Bot
