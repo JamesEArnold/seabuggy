@@ -1,5 +1,3 @@
-import { Button } from "ui";
-
 export default function Web() {
   return (
     <div>
@@ -8,8 +6,6 @@ export default function Web() {
           Welcome to SeaBuggy! 🎉
         </div>
       </div>
-      <h1>Web</h1>
-      <Button />
     </div>
   );
 }
