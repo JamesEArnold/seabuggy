@@ -1,10 +1,15 @@
 {
+  "baseBranch": "origin/main",
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "lint": {
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "dev": {
