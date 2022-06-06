@@ -1,5 +1,10 @@
-import { Notification } from 'ui';
+import { Nav, Notification } from 'ui';
 
 export default function Web() {
-  return (<Notification />);
+  return (
+    <>
+      <Nav />
+      <Notification />
+    </>
+  );
 }
