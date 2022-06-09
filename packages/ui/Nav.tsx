@@ -16,15 +16,17 @@ const navButtons: NavButton[] = [
 
 const conditionalButtonClasses = (button: NavButton) => {
   return classNames('px-3 py-2 rounded-md text-sm font-medium', {
-    'bg-sea-foam-blue-500 text-sea-white-100 dark:bg-sea-blue-900 dark:text-sea-white-100': button.current,
-    'text-sea-blue-500 hover:bg-sea-white-100 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:bg-sea-blue-300 dark:hover:text-sea-white-100': !button.current,
+    'bg-sea-sky-500 text-sea-white-100 dark:bg-sea-blue-900 dark:text-sea-white-100':
+      button.current,
+    'text-sea-blue-300 hover:bg-sea-white-200 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:bg-sea-blue-300 dark:hover:text-sea-white-100':
+      !button.current,
   });
 };
 
 export const Nav = () => {
   return (
     <>
-      <div className="bg-sea-sand-600 dark:bg-sea-blue-500">
+      <div className="bg-sea-white-100 dark:bg-sea-blue-500">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden text-sea-blue-300 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100">
@@ -62,13 +64,13 @@ export const Nav = () => {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
-                className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 text-sea-blue-300 hover:text-sea-blue-900 focus:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100 dark:focus:ring-offset-sea-blue-500 dark:focus:ring-sea-white-100"
+                className="p-1 text-sea-blue-300 focus:text-sea-blue-500 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500 dark:text-sea-white-300 dark:focus:text-sea-white-100"
               >
                 <span className="sr-only">View notifications</span>
                 <Bell className="h-6 w-6" aria-hidden="true" />
               </button>
               <div className="ml-3 relative">
-                <button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500">
                   <span className="sr-only">Open user menu</span>
                   <div className="h-8 w-8 rounded-full">
                     <Image
