@@ -2,3 +2,7 @@ import * as React from "react";
 export * from "./Button";
 export * from "./Notification";
 export * from "./Nav";
+export * as logo from "./resources/seabuggy_logo.png";
+export * as profilePic from "./resources/profilePictures/profile1.png";
+export * as logoFull from "./resources/seabuggy_logo_full.png";
+export * as logoFullDark from "./resources/seabuggy_logo_full_dark.png";
