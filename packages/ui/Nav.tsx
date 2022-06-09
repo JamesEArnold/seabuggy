@@ -1,7 +1,7 @@
 import { Menu, Bell } from 'react-feather';
 import classNames from 'classnames';
 import Image from 'next/image';
-import profilePic from './resources/profilePictures/profile1.png';
+import { logo, profilePic, logoFull, logoFullDark } from 'ui';
 
 interface NavButton {
   name: string;
@@ -11,36 +11,36 @@ interface NavButton {
 
 const navButtons: NavButton[] = [
   { name: 'Dashboard', href: '#', current: true },
+  { name: 'Team', href: '#', current: false },
 ];
 
 const conditionalButtonClasses = (button: NavButton) => {
   return classNames('px-3 py-2 rounded-md text-sm font-medium', {
-    'bg-gray-900 text-white': button.current,
-    'text-gray-300 hover:bg-gray-700 hover:text-white': !button.current,
+    'bg-sea-foam-blue-500 text-sea-white-100 dark:bg-sea-blue-900 dark:text-sea-white-100': button.current,
+    'text-sea-blue-500 hover:bg-sea-white-100 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:bg-sea-blue-300 dark:hover:text-sea-white-100': !button.current,
   });
 };
 
 export const Nav = () => {
   return (
     <>
-      <div className="bg-slate-800">
+      <div className="bg-sea-sand-600 dark:bg-sea-blue-500">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden text-sea-blue-300 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100">
               <Menu />
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0 flex items-center">
-                <img
-                  className="block lg:hidden h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                />
-                <img
-                  className="hidden lg:block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Workflow"
-                />
+                <div className="block lg:hidden h-8 w-auto">
+                  <Image layout="fixed" src={logo} alt="logo" />
+                </div>
+                <div className="hidden lg:block h-8 w-auto dark:hidden">
+                  <Image layout="fixed" src={logoFull} alt="full logo" />
+                </div>
+                <div className="hidden dark:lg:block h-8 w-auto">
+                  <Image layout="fixed" src={logoFullDark} alt="full logo" />
+                </div>
               </div>
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex space-x-4">
@@ -62,7 +62,7 @@ export const Nav = () => {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
-                className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 text-sea-blue-300 hover:text-sea-blue-900 focus:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100 dark:focus:ring-offset-sea-blue-500 dark:focus:ring-sea-white-100"
               >
                 <span className="sr-only">View notifications</span>
                 <Bell className="h-6 w-6" aria-hidden="true" />
