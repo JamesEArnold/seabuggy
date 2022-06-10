@@ -1,7 +1,7 @@
 import { Menu, Bell } from 'react-feather';
 import classNames from 'classnames';
 import Image from 'next/image';
-import { logo, profilePic, logoFull, logoFullDark } from 'ui';
+import { logo, profilePic, logoFull, logoFullDark, ToggleTheme } from 'ui';
 
 interface NavButton {
   name: string;
@@ -14,7 +14,7 @@ const navButtons: NavButton[] = [
   { name: 'Team', href: '#', current: false },
 ];
 
-const conditionalButtonClasses = (button: NavButton) => {
+const conditionalButtonClasses = (button: NavButton): string => {
   return classNames('px-3 py-2 rounded-md text-sm font-medium', {
     'bg-sea-sky-500 text-sea-white-100 dark:bg-sea-blue-900 dark:text-sea-white-100':
       button.current,
@@ -23,7 +23,7 @@ const conditionalButtonClasses = (button: NavButton) => {
   });
 };
 
-export const Nav = () => {
+export const Nav = (): JSX.Element => {
   return (
     <>
       <div className="bg-sea-white-100 dark:bg-sea-blue-500">
@@ -62,6 +62,9 @@ export const Nav = () => {
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="hidden pr-4 sm:block">
+                <ToggleTheme />
+              </div>
               <button
                 type="button"
                 className="p-1 text-sea-blue-300 focus:text-sea-blue-500 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500 dark:text-sea-white-300 dark:focus:text-sea-white-100"
