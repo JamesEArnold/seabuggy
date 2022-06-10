@@ -7,6 +7,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        toggleTheme: 'toggleTheme 2s ease-in-out 1',
+        toggleThemeReverse: 'toggleThemeReverse 2s ease-in-out 1',
+      },
+      keyframes: {
+        toggleTheme: {
+          '0%': { left: '16px', width: '20px' },
+          '60%': { left: '8px', width: '28px' },
+          '100%': { left: '0px' },
+        },
+        toggleThemeReverse: {
+          '0%': { left: '0px' },
+          '60%': { left: '0px', width: '28px' },
+          '100%': { left: '16px' },
+        }
+      },
       colors: {
         'sea-blue': {
           '900': '#15192A',
@@ -27,6 +43,8 @@ module.exports = {
           '100': '#f1c9cf'
         },
         'sea-foam-blue': {
+          '700': '#767b97',
+          '600': '#848baa',
           '500': '#939abd',
           '400': '#a6aed4',
           '300': '#b8c1ec',
