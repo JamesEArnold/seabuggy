@@ -23,7 +23,7 @@ const conditionalButtonClasses = (button: NavButton): string => {
   });
 };
 
-export const Nav = (): JSX.Element => {
+export const Nav = ( { setDarkTheme } ): JSX.Element => {
   return (
     <>
       <div className="bg-sea-white-100 dark:bg-sea-blue-500">
@@ -63,7 +63,7 @@ export const Nav = (): JSX.Element => {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <div className="hidden pr-4 sm:block">
-                <ToggleTheme />
+                <ToggleTheme setDarkTheme={setDarkTheme} />
               </div>
               <button
                 type="button"
