@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        toggleTheme: 'toggleTheme 2s ease-in-out 1',
-        toggleThemeReverse: 'toggleThemeReverse 2s ease-in-out 1',
+        toggleTheme: 'toggleTheme 350ms ease-in-out 1',
+        toggleThemeReverse: 'toggleThemeReverse 350ms ease-in-out 1',
       },
       keyframes: {
         toggleTheme: {
