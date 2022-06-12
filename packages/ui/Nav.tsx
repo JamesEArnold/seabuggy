@@ -35,13 +35,13 @@ export const Nav = ( { setDarkTheme } ): JSX.Element => {
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0 flex items-center">
                 <div className="block lg:hidden h-8 w-auto">
-                  <Image layout="fixed" src={logo} alt="logo" />
+                  <Image src={logo} alt="logo" height="32px" width="35px" />
                 </div>
                 <div className="hidden lg:block h-8 w-auto dark:hidden">
-                  <Image layout="fixed" src={logoFull} alt="full logo" />
+                  <Image src={logoFull} alt="full logo" objectFit='cover' width="143px" height="32px"  />
                 </div>
                 <div className="hidden dark:lg:block h-8 w-auto">
-                  <Image layout="fixed" src={logoFullDark} alt="full logo" />
+                  <Image src={logoFullDark} alt="full logo"  width="143px" height="32px"/>
                 </div>
               </div>
               <div className="hidden sm:block sm:ml-6">
