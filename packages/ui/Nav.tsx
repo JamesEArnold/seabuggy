@@ -9,6 +9,10 @@ interface NavButton {
   current: boolean;
 }
 
+interface NavProps {
+  setDarkTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+}
+
 const navButtons: NavButton[] = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
@@ -23,7 +27,7 @@ const conditionalButtonClasses = (button: NavButton): string => {
   });
 };
 
-export const Nav = ( { setDarkTheme } ): JSX.Element => {
+export const Nav = ({ setDarkTheme }: NavProps): JSX.Element => {
   return (
     <>
       <div className="bg-sea-white-100 dark:bg-sea-blue-500">
