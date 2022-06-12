@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export const ToggleTheme = ({ setDarkTheme }): JSX.Element => {
+interface ToggleThemeProps {
+  setDarkTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+}
+
+export const ToggleTheme = ({ setDarkTheme }: ToggleThemeProps): JSX.Element => {
   
   return (
     <>
