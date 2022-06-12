@@ -12,14 +12,16 @@
   "dependencies": {
     "next": "^12.1.6",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "ui": "*",
+    "tsconfig": "*",
+    "config": "*"
   },
   "devDependencies": {
     "@testing-library/react": "^13.2.0",
     "@types/node": "^17.0.12",
     "@types/react": "17.0.37",
     "autoprefixer": "^10.4.7",
-    "config": "*",
     "eslint": "7.32.0",
     "next-transpile-modules": "9.0.0",
     "postcss": "^8.4.13",
