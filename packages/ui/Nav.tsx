@@ -2,6 +2,7 @@ import { Menu, Bell } from 'react-feather';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { logo, profilePic, logoFull, logoFullDark, ToggleTheme } from 'ui';
+import { Dispatch, SetStateAction } from 'react';
 
 interface NavButton {
   name: string;
@@ -10,7 +11,7 @@ interface NavButton {
 }
 
 interface NavProps {
-  setLightTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  setLightTheme: Dispatch<SetStateAction<boolean>>;
   lightTheme: boolean;
 }
 
