@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
-
 interface ToggleThemeProps {
-  setDarkTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  setLightTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  lightTheme: boolean;
 }
 
-export const ToggleTheme = ({ setDarkTheme }: ToggleThemeProps): JSX.Element => {
-  
+export const ToggleTheme = ({
+  setLightTheme,
+  lightTheme,
+}: ToggleThemeProps): JSX.Element => {
   return (
     <>
       <input
         type="checkbox"
         id="toggle-theme"
         className="hidden peer"
-        onClick={() => setDarkTheme(prevTheme => !prevTheme)}
+        onClick={() => setLightTheme((prevTheme) => !prevTheme)}
+        defaultChecked={lightTheme}
       />
       <label
         htmlFor="toggle-theme"

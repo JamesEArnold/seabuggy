@@ -10,7 +10,8 @@ interface NavButton {
 }
 
 interface NavProps {
-  setDarkTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  setLightTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  lightTheme: boolean;
 }
 
 const navButtons: NavButton[] = [
@@ -27,7 +28,7 @@ const conditionalButtonClasses = (button: NavButton): string => {
   });
 };
 
-export const Nav = ({ setDarkTheme }: NavProps): JSX.Element => {
+export const Nav = ({ setLightTheme, lightTheme }: NavProps): JSX.Element => {
   return (
     <>
       <div className="bg-sea-white-100 dark:bg-sea-blue-500">
@@ -67,7 +68,7 @@ export const Nav = ({ setDarkTheme }: NavProps): JSX.Element => {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <div className="hidden pr-4 sm:block">
-                <ToggleTheme setDarkTheme={setDarkTheme} />
+                <ToggleTheme setLightTheme={setLightTheme} lightTheme={lightTheme}/>
               </div>
               <button
                 type="button"

@@ -2,28 +2,35 @@ import { useState, useEffect } from 'react';
 import { Nav, Notification } from 'ui';
 
 export default function Web() {
-  const getDefaultTheme = (): boolean => {
+  const [lightTheme, setLightTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      const localTheme: string | null = localStorage.getItem('dark');
-      if (localTheme !== null) {
-         return true;
-      }
+      const localTheme = localStorage.getItem('light');
+      return localTheme !== null ? JSON.parse(localTheme) : false;
     }
-    return false;
-  };
+  });
 
-  const [darkTheme, setDarkTheme] = useState(getDefaultTheme());
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('dark', JSON.stringify(darkTheme));
-  }, [darkTheme]);
+    setMounted(true);
+  }, []);
 
-  return (
-    <div className={darkTheme ? 'light' : 'dark'}>
-      <div className="min-h-screen bg-sea-white-100 dark:bg-sea-blue-500">
-        <Nav setDarkTheme={setDarkTheme} />
-        <Notification />
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('light', JSON.stringify(lightTheme));
+    }
+  }, [lightTheme]);
+
+  if (mounted) {
+    return (
+      <div className={lightTheme ? 'light' : 'dark'}>
+        <div className="min-h-screen bg-sea-white-100 dark:bg-sea-blue-500">
+          <Nav setLightTheme={setLightTheme} lightTheme={lightTheme}/>
+          <Notification />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 }
