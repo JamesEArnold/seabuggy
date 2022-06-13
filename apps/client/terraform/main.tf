@@ -44,9 +44,9 @@ variable "custom_domain_zone_name" {
 ###########
 
 locals {
-  aliases = [var.custom_domain]
+  # aliases = [var.custom_domain]
   # If you need a wildcard domain(ex: *.example.com), you can add it like this:
-  # aliases = [var.custom_domain, "*.${var.custom_domain}"]
+  aliases = [var.custom_domain, "*.${var.custom_domain}"]
 }
 
 #######################
@@ -104,11 +104,16 @@ module "cloudfront_cert" {
 
 module "tf_next" {
   source = "milliHQ/next-js/aws"
+  version = "1.0.0-canary.4"
 
   cloudfront_aliases             = local.aliases
   cloudfront_acm_certificate_arn = module.cloudfront_cert.acm_certificate_arn
 
   deployment_name = "seabuggy"
+
+  enable_multiple_deployments      = true
+  multiple_deployments_base_domain = "*.${var.custom_domain}"
+
   providers = {
     aws.global_region = aws.global_region
   }
@@ -128,4 +133,12 @@ output "cloudfront_domain_name" {
 
 output "custom_domain_name" {
   value = var.custom_domain
+}
+
+output "api_endpoint" {
+  value = module.tf_next.api_endpoint
+}
+
+output "api_endpoint_access_policy_arn" {
+  value = module.tf_next.api_endpoint_access_policy_arn
 }
