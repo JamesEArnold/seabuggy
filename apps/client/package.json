@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "tf-next": "tf-next build"
   },
   "dependencies": {
     "next": "^12.1.6",
@@ -23,6 +24,7 @@
     "next-transpile-modules": "9.0.0",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24",
+    "tf-next": "^0.13.2",
     "tsconfig": "*",
     "typescript": "^4.5.3",
     "ui": "*"
