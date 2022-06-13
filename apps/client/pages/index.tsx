@@ -1,25 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Nav, Notification } from 'ui';
+import { useTheme, UseThemeI } from 'hooks/useTheme';
 
 export default function Web() {
-  const [lightTheme, setLightTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const localTheme = localStorage.getItem('light');
-      return localTheme !== null ? JSON.parse(localTheme) : false;
-    }
-  });
-
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('light', JSON.stringify(lightTheme));
-    }
-  }, [lightTheme]);
+  const { lightTheme, setLightTheme, mounted }: UseThemeI = useTheme();
 
   if (mounted) {
     return (

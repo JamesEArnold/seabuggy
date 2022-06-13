@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface ToggleThemeProps {
-  setLightTheme: (updatedValue: (previousValue: boolean) => boolean) => void;
+  setLightTheme: Dispatch<SetStateAction<boolean>>;
   lightTheme: boolean;
 }
 
