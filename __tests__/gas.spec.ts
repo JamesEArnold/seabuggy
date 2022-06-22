@@ -60,17 +60,18 @@ const someFeeHistoryResult = {
 describe('gas', () => {
   describe('getLatestFeeHistory', () => {
     describe('happy path', () => {
-      it('retrieves the history for as many blocks as the block count', async () => {
+      beforeEach(async () => {
         (web3eth.getFeeHistory as jest.Mock).mockResolvedValueOnce(someFeeHistoryResult);
         await getLatestFeeHistory(mockBlockCount, mockRewardPercentile);
+      });
+
+      it('calls alchemy for the blocks and their gas fees at certain percentiles', async () => {
         expect(web3eth.getFeeHistory).toHaveBeenCalledWith(
           mockBlockCount,
           'latest',
           mockRewardPercentile,
         );
       });
-
-      it('retrieves the passed reward percentiles for block history', () => {});
 
       it('converts rewards from hashes to numbers', () => {});
 
