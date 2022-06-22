@@ -6,6 +6,9 @@ const createJestConfig = nextJest({ dir: './' });
 
 // Any custom config you want to pass to Jest
 const customJestConfig = {
+  setupFilesAfterEnv: [
+    '<rootDir>/jest.setup.js',
+  ],
   moduleDirectories: [ 'node_modules', '<rootDir>/' ],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/styles/__mocks__/styleMock.js',
