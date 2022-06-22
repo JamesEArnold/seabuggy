@@ -12,24 +12,28 @@ export const getLatestFeeHistory = async (
   blockCount: number,
   rewardPercentiles: number[],
 ): Promise<SanitizedFeeHistory[]> => {
-  const alchemyResponse = await web3eth.getFeeHistory(
-    blockCount,
-    'latest',
-    rewardPercentiles,
-  );
+  try {
+    const alchemyResponse = await web3eth.getFeeHistory(
+      blockCount,
+      'latest',
+      rewardPercentiles,
+    );
 
-  const result: SanitizedFeeHistory[] = [];
+    const result: SanitizedFeeHistory[] = [];
 
-  for (let i = 0; i < blockCount; i++) {
-    result.push({
-      blockNumber: Number(alchemyResponse.oldestBlock) + i,
-      reward: alchemyResponse.reward[i].map((x) => Number(x)),
-      baseFeePerGas: Number(alchemyResponse.baseFeePerGas[i]),
-      gasUsedRatio: alchemyResponse.gasUsedRatio[i],
-    });
+    for (let i = 0; i < blockCount; i++) {
+      result.push({
+        blockNumber: Number(alchemyResponse.oldestBlock) + i,
+        reward: alchemyResponse.reward[i].map((x) => Number(x)),
+        baseFeePerGas: Number(alchemyResponse.baseFeePerGas[i]),
+        gasUsedRatio: alchemyResponse.gasUsedRatio[i],
+      });
+    }
+
+    return result;
+  } catch (error) {
+    return Promise.reject();
   }
-
-  return result;
 };
 
 export const getGasAverages = (
