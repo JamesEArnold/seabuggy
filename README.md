@@ -1,5 +1,5 @@
 # SeaBuggy
-SeaBuggy is an OpenSea bot.
+SeaBuggy is a Web3 dashboard.
 
 ## Installation
 
@@ -16,6 +16,17 @@ Start SeaBuggy using the following npm command:
 ```bash
 npm run dev
 ```
+
+## Environment variables
+
+Load the following environment variables for `apps/client` into a `.env.local` file <br />
+Path: `apps/client/.env.local`
+
+| Environment Variable  | Description  | Example |
+|---|---|---|
+| ALCHEMY_API_KEY  | [Alchemy](https://www.alchemy.com/) API Key | e2rw40234iee03 |
+| ALCHEMY_URL_HTTPS  | [Alchemy](https://www.alchemy.com/) https without the API Key  | https://eth-goerli.alchemyapi.io/v2/ |
+| ALCHEMY_URL_WEBSOCKET  | [Alchemy](https://www.alchemy.com/) websocket without the API Key  | wss://eth-goerli.alchemyapi.io/v2/ |
 
 ## Deployment
 
