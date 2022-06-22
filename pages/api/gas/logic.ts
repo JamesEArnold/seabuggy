@@ -23,8 +23,8 @@ export const getLatestFeeHistory = async (
   for (let i = 0; i < blockCount; i++) {
     result.push({
       blockNumber: Number(alchemyResponse.oldestBlock) + i,
-      reward: alchemyResponse.reward.map((x) => Math.round(Number(x) / 10 ** 9)),
-      baseFeePerGas: Math.round(Number(alchemyResponse.baseFeePerGas[i]) / 10 ** 9),
+      reward: alchemyResponse.reward[i].map((x) => Number(x)),
+      baseFeePerGas: Number(alchemyResponse.baseFeePerGas[i]),
       gasUsedRatio: alchemyResponse.gasUsedRatio[i],
     });
   }
