@@ -8,6 +8,8 @@ type GasAveragesPerBlock = {
   high: number;
 };
 
+export const convertWeiToGwei = (wei: number): number => wei / (10 ** 9);
+
 export const getLatestFeeHistory = async (
   blockCount: number,
   rewardPercentiles: number[],
@@ -41,8 +43,8 @@ export const getGasAverages = (
 ): GasAveragesPerBlock[] => sanitizedFeeHistory.map(
   (block: SanitizedFeeHistory): GasAveragesPerBlock => ({
     blockNumber: block.blockNumber,
-    low: block.baseFeePerGas + block.reward[0],
-    medium: block.baseFeePerGas + block.reward[1],
-    high: block.baseFeePerGas + block.reward[2],
+    low: convertWeiToGwei(block.baseFeePerGas + block.reward[0]),
+    medium: convertWeiToGwei(block.baseFeePerGas + block.reward[1]),
+    high: convertWeiToGwei(block.baseFeePerGas + block.reward[2]),
   }),
 );

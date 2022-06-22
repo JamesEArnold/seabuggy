@@ -1,5 +1,5 @@
 import { SanitizedFeeHistory } from '@/types';
-import { getLatestFeeHistory } from '@/pages/api/gas/logic';
+import { convertWeiToGwei, getLatestFeeHistory } from '@/pages/api/gas/logic';
 import { web3eth } from '@/utils/web3';
 
 jest.mock('@/utils/web3');
@@ -178,7 +178,7 @@ const someSanitizedFeeHistory: SanitizedFeeHistory[] = [
 ];
 
 describe('gas', () => {
-  describe('getLatestFeeHistory', () => {
+  describe(getLatestFeeHistory, () => {
     describe('happy path', () => {
       let result: SanitizedFeeHistory[];
       beforeEach(async () => {
@@ -211,6 +211,15 @@ describe('gas', () => {
         await expect(getLatestFeeHistory(mockBlockCount, mockRewardPercentile))
           .rejects.toEqual(undefined);
       });
+    });
+  });
+
+  describe(convertWeiToGwei, () => {
+    const someWei = 2875000010;
+    const someGwei = 2.87500001;
+
+    it('converts wei to our expected gwei', () => {
+      expect(convertWeiToGwei(someWei)).toEqual(someGwei);
     });
   });
 });
