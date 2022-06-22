@@ -17,3 +17,5 @@ export const alchemyConfig: Web3ProviderConfig = {
   urlHttps: process.env.ALCHEMY_URL_HTTPS as string,
   urlWebsocket: process.env.ALCHEMY_URL_WEBSOCKET as string,
 };
+
+export const demoMode = () => process.env.NODE_ENV === 'development';
