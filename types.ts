@@ -7,7 +7,7 @@ export type SanitizedFeeHistory = {
 
 export type GasHistoryResponse = {
   status: number,
-  body: {
+  body?: {
     latestGasEstimates: GasAveragesPerBlock[];
     averages: {
       low: number;
