@@ -16,7 +16,7 @@ export default function Web () {
     return (
       <div className={lightTheme ? 'light' : 'dark'}>
         <div className="min-h-screen bg-sea-white-100 dark:bg-sea-blue-500">
-          <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} gasData={gasHistory} />
+          <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
           <Notification />
         </div>
       </div>

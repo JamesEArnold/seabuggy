@@ -88,6 +88,9 @@ module.exports = {
           100: '#B9E5EB',
         },
       },
+      scale: {
+        200: '2',
+      },
     },
   },
   darkMode: 'class',

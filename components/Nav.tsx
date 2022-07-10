@@ -1,7 +1,6 @@
 import { Bell, Menu } from 'react-feather';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
 import { ToggleTheme, logo, logoFull, logoFullDark, profilePic } from '@/components';
-import { GasHistoryResponse } from '@/types';
 import Image from 'next/image';
 import classNames from 'classnames';
 
@@ -14,7 +13,6 @@ interface NavButton {
 interface NavProps {
   setLightTheme: Dispatch<SetStateAction<boolean>>;
   lightTheme: boolean;
-  gasData: GasHistoryResponse;
 }
 
 const navButtons: NavButton[] = [
@@ -29,7 +27,7 @@ const conditionalButtonClasses = (button: NavButton): string => classNames('px-3
       !button.current,
 });
 
-export const Nav = ({ setLightTheme, lightTheme, gasData }: NavProps): JSX.Element => (
+export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => (
   <>
     <div className="bg-sea-white-100 dark:bg-sea-blue-500">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -65,11 +63,6 @@ export const Nav = ({ setLightTheme, lightTheme, gasData }: NavProps): JSX.Eleme
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <div className="hidden sm:block bg-sea-foam-blue-300">
-              <div>{gasData.body.averages.low}</div>
-              <div>{gasData.body.averages.medium}</div>
-              <div>{gasData.body.averages.high}</div>
-            </div>
             <div className="hidden pr-4 sm:block">
               <ToggleTheme setLightTheme={setLightTheme} lightTheme={lightTheme}/>
             </div>
