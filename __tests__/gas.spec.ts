@@ -1,5 +1,5 @@
-import { SanitizedFeeHistory } from '@/types';
 import { convertWeiToGwei, getLatestFeeHistory } from '@/pages/api/gas/logic';
+import { SanitizedFeeHistory } from '@/types';
 import { web3eth } from '@/utils/web3';
 
 jest.mock('@/utils/web3');
