@@ -8,6 +8,7 @@ export default function Web () {
   const { lightTheme, setLightTheme, mounted }: UseThemeI = useTheme();
 
   const { data: gasHistory, error: gasHistoryError } = useSwr('/api/gas', fetcher);
+  const { data: tokenBalances, error: tokenBalanceError } = useSwr('/api/get-token-balance', fetcher);
 
   if (gasHistoryError) return <div>Failed to load gas</div>;
   if (!gasHistory) return <div>Loading...</div>;

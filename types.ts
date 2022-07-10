@@ -23,3 +23,15 @@ export type GasAveragesPerBlock = {
   medium: number;
   high: number;
 };
+
+export type TokenBalance = {
+  contractAddress: string,
+  tokenBalance: string | null,
+  error: string | null,
+}
+
+export type TokenBalances = {
+  address: string,
+  tokenBalances: TokenBalance[],
+};
+
