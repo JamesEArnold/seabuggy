@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getGasAverages, getLatestFeeHistory } from '@/pages/api/gas/logic';
 import NextCors from 'nextjs-cors';
 import { calculateAverage } from 'utils/helpers';
+import { demoMode } from '@/configuration';
 
 type Data = GasHistoryResponse;
 
@@ -15,6 +16,18 @@ const handler = async (
     origin: '*',
     optionsSuccessStatus: 200,
   });
+  if (demoMode()) {
+    res.send({ status: 200,
+      body: {
+        latestGasEstimates: [],
+        averages: {
+          low: 3,
+          medium: 5,
+          high: 7,
+        },
+      } });
+    return;
+  }
 
   const blockCount = 20;
 
