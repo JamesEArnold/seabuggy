@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
 
 interface ToggleThemeProps {
   setLightTheme: Dispatch<SetStateAction<boolean>>;
@@ -8,7 +8,7 @@ interface ToggleThemeProps {
 export const ToggleTheme = ({
   setLightTheme,
   lightTheme,
-}: ToggleThemeProps): JSX.Element => (
+}: ToggleThemeProps): ReactElement => (
   <>
     <input
       type="checkbox"

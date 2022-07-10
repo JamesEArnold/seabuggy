@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-import * as React from 'react';
-export * from './Button';
 export * from './Notification';
 export * from './Nav';
 export * from './ToggleTheme';
