@@ -1,4 +1,4 @@
-import { Nav, Notification } from '@/components';
+import { HighChart, Nav, Notification, PieChart } from '@/components';
 import { UseThemeI, useTheme } from '@/pages/hooks/useTheme';
 import useSwr from 'swr';
 
@@ -13,12 +13,14 @@ export default function Web () {
   if (gasHistoryError) return <div>Failed to load gas</div>;
   if (!gasHistory) return <div>Loading...</div>;
 
-  if (mounted) {
+  if (mounted && tokenBalances !== undefined) {
     return (
       <div className={lightTheme ? 'light' : 'dark'}>
         <div className="min-h-screen bg-sea-white-100 dark:bg-sea-blue-500">
           <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
           <Notification />
+          <PieChart chartData={tokenBalances.body} />
+          <HighChart chartData={tokenBalances.body} />
         </div>
       </div>
     );
