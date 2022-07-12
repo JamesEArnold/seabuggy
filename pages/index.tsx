@@ -1,4 +1,4 @@
-import { HighChart, Nav, Notification, PieChart } from '@/components';
+import { Nav, Notification, PieChart } from '@/components';
 import { UseThemeI, useTheme } from '@/pages/hooks/useTheme';
 import useSwr from 'swr';
 
@@ -20,7 +20,6 @@ export default function Web () {
           <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
           <Notification />
           <PieChart chartData={tokenBalances.body} />
-          <HighChart chartData={tokenBalances.body} />
         </div>
       </div>
     );
