@@ -16,8 +16,7 @@ export const handler = async (
   });
 
   if (demoMode()) {
-    res.send({ status: 200,
-      body: mockGetTokenBalance });
+    res.send({ status: 200, body: { ...mockGetTokenBalance } });
     return;
   }
 
@@ -25,7 +24,9 @@ export const handler = async (
     const response: TokenBalances = await getTokenBalances('0x00000000219ab540356cbb839cbe05303d7705fa');
     res.send({
       status: 200,
-      body: { response },
+      body: {
+        ...response,
+      },
     });
   } catch (error) {
     res.send({
