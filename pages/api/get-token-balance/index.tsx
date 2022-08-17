@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { TokenBalanceResponse, getTokenBalances } from '@/pages/api/get-token-balance/logic';
 import NextCors from 'nextjs-cors';
-import { TokenBalances } from '@/types';
 import { demoMode } from '@/configuration';
-import { getTokenBalances } from '@/pages/api/get-token-balance/logic';
 import { mockGetTokenBalance } from './mock';
 
 export const handler = async (
@@ -21,7 +20,7 @@ export const handler = async (
   }
 
   try {
-    const response: TokenBalances = await getTokenBalances('0x00000000219ab540356cbb839cbe05303d7705fa');
+    const response: TokenBalanceResponse[] = await getTokenBalances('0x00000000219ab540356cbb839cbe05303d7705fa');
     res.send({
       status: 200,
       body: {

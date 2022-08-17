@@ -1,8 +1,9 @@
 import { TokenBalance } from '@/types';
 import { TokenBalancesResponse } from '@alch/alchemy-web3';
+import { chainlinkEthToUsd } from '@/abi/chainlink';
 import { web3alchemy } from '@/utils/web3';
 
-interface TokenBalanceResponse extends TokenBalance {
+export interface TokenBalanceResponse extends TokenBalance {
   name: string,
   y: number,
 }
@@ -10,10 +11,13 @@ interface TokenBalanceResponse extends TokenBalance {
 export const getTokenBalances = async (
   walletAddress: string,
   contractAddresses?: string[],
-): Promise<TokenBalance[]> => {
+): Promise<TokenBalanceResponse[]> => {
   const { tokenBalances }: TokenBalancesResponse = contractAddresses === undefined
     ? await web3alchemy.getTokenBalances(walletAddress)
     : await web3alchemy.getTokenBalances(walletAddress, contractAddresses);
+
+  const response = await chainlinkEthToUsd.latestRoundData();
+  console.log(response);
   return parseTokenBalances(tokenBalances);
 };
 

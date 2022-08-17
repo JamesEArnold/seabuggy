@@ -17,7 +17,7 @@ export const PieChart = ({ chartData }: PieChartProps) => {
   const [ parsedChartData, setParsedChartData ] = useState<DataOptions[]>([]);
 
   useEffect(() => {
-    if (chartData !== undefined) {
+    if (chartData.tokenBalances !== undefined) {
       setLoaded(true);
       setParsedChartData(chartData.tokenBalances.map((value: TokenBalance) => ({
         name: value.contractAddress,
