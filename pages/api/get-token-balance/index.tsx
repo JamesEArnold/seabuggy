@@ -14,10 +14,10 @@ export const handler = async (
     optionsSuccessStatus: 200,
   });
 
-  if (demoMode()) {
-    res.send({ status: 200, body: { ...mockGetTokenBalance } });
-    return;
-  }
+  // if (demoMode()) {
+  //   res.send({ status: 200, body: { ...mockGetTokenBalance } });
+  //   return;
+  // }
 
   try {
     const response: TokenBalanceResponse[] = await getTokenBalances('0x00000000219ab540356cbb839cbe05303d7705fa');

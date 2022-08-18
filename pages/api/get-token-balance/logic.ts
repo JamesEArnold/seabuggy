@@ -1,11 +1,18 @@
+import { LatestRoundDataSchemaResponse, isValid } from '@/utils/validate';
+import { Contract } from 'ethers';
 import { TokenBalance } from '@/types';
 import { TokenBalancesResponse } from '@alch/alchemy-web3';
+import { alchemy } from '@/utils/web3';
 import { chainlinkEthToUsd } from '@/abi/chainlink';
-import { web3alchemy } from '@/utils/web3';
 
 export interface TokenBalanceResponse extends TokenBalance {
   name: string,
   y: number,
+}
+
+interface LatestRoundData {
+  _hex: string,
+  _IsBigNumber: boolean,
 }
 
 export const getTokenBalances = async (
@@ -13,10 +20,12 @@ export const getTokenBalances = async (
   contractAddresses?: string[],
 ): Promise<TokenBalanceResponse[]> => {
   const { tokenBalances }: TokenBalancesResponse = contractAddresses === undefined
-    ? await web3alchemy.getTokenBalances(walletAddress)
-    : await web3alchemy.getTokenBalances(walletAddress, contractAddresses);
+    ? await alchemy.core.getTokenBalances(walletAddress)
+    : await alchemy.core.getTokenBalances(walletAddress, contractAddresses);
 
-  const response = await chainlinkEthToUsd.latestRoundData();
+  const chainLinkContract: Contract = await chainlinkEthToUsd();
+  let response = await chainLinkContract.latestRoundData();
+  response = isValid<LatestRoundData[]>(response, LatestRoundDataSchemaResponse);
   console.log(response);
   return parseTokenBalances(tokenBalances);
 };
