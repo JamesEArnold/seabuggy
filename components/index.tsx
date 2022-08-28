@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+export * from './Graph';
 export * from './Notification';
 export * from './Nav';
 export * from './ToggleTheme';
