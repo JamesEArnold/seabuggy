@@ -8,9 +8,22 @@ import { AlchemySettings, Network } from 'alchemy-sdk';
 
 // https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables
 
-export const alchemyConfig: AlchemySettings = {
+const isTestEnv = (): boolean => process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development';
+
+const getTestInfraConfig = (): AlchemySettings => ({
   apiKey: process.env.ALCHEMY_API_KEY as string,
   network: Network.ETH_GOERLI,
-};
+});
 
-export const demoMode = (): boolean => process.env.NODE_ENV === 'development';
+const getProdInfraConfig = (): AlchemySettings => ({
+  apiKey: process.env.ALCHEMY_API_KEY as string,
+  network: Network.ETH_MAINNET,
+});
+
+const getInfraConfig = (): AlchemySettings => (
+  isTestEnv() ? getTestInfraConfig() : getProdInfraConfig()
+);
+
+export const Configuration = {
+  getInfraConfig,
+};
