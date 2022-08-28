@@ -1,47 +1,40 @@
 name: CI
 
 on:
-  push:
-    branches: ["main"]
   pull_request:
-    types: [opened, synchronize]
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build:
-      name: Build and Test
-      timeout-minutes: 15
-      runs-on: ${{ matrix.os }}
-      env:
-       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-      strategy:
-        matrix:
-          os: [ubuntu-latest, macos-latest]
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v3
+      # Cache node modules and next folder
+      - name: 📬 Caching
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
-        - name: Setup Cache
-          uses: actions/cache@v3
-          with:
-            path: |
-              node_modules/.cache/turbo
-            key: ${{ runner.os }}-${{ matrix.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-            restore-keys: |
-              ${{ runner.os }}-${{ matrix.os }}-
-              ${{ runner.os }}-
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
-        - name: Setup Node.js environment
-          uses: actions/setup-node@v2
-          with:
-            node-version: 16
+      - name: 🧰 Install dependencies
+        run: npm ci
 
-        - name: Install dependencies
-          run: npm install
+      - name: 📦 Build project
+        run: npm run build
 
-        - name: Build
-          run: npm run build
+      - name: 🧹 Run lint
+        run: npm run lint
 
-        - name: Test
-          run: npm run test
+      - name: 🐛 Run tests
+        run: npm run test
