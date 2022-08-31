@@ -9,8 +9,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'next/core-web-vitals',
+    'next',
   ],
-
   parserOptions: {
     ecmaVersion: 2020,
     parser: '@typescript-eslint/parser',
