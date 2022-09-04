@@ -1,5 +1,5 @@
 import { Nav, Notification, PieChart } from '@/components';
-import { UseThemeI, useTheme } from '@/pages/hooks/useTheme';
+import { UseThemeI, useTheme } from '@/components/hooks/useTheme';
 import useSwrImmutable from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
