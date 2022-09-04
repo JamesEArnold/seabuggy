@@ -1,6 +1,6 @@
 import { TokenRepository } from '@/ports/tokens/token-repository';
 import { alchemyTokenRepository } from '@/ports/tokens/alchemy-token-repository';
-import { testTokenRepository } from './tokens/test-token-repository';
+import { testTokenRepository } from '@/ports/tokens/test-token-repository';
 
 export interface Ports {
   tokenRepository: TokenRepository,
@@ -25,7 +25,7 @@ const createFakePorts = (): Ports => ({
 });
 
 const createSandboxPorts = (): Ports => ({
-  tokenRepository: alchemyTokenRepository,
+  tokenRepository: testTokenRepository,
 });
 
 const createRealPorts = async (): Promise<Ports> => ({
