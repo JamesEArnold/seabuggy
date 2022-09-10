@@ -17,17 +17,6 @@ const tokenPricingInformation = async (
   return contract.latestRoundData();
 };
 
-/*
- * All ETH denominated pairs will have 18 decimals (AAVE/ETH)
- * All USD denominated pairs will have 8 decimals (ETH/USD)
- */
-
-/**
- * Finds the number of decimal places used to convert
- * the token price into a fixed number.
- * @param contractAddress The contract address of the token,
- * @returns {number}
- */
 const tokenDecimalPlaces = async (
   contractAddress: string,
 ): Promise<number> => {
