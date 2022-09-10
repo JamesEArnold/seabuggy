@@ -1,14 +1,15 @@
 import { Ports, getPorts } from '@/ports/getPorts';
-import { TokenBalances } from '@/types/token';
-import { TokenRepository } from '@/ports/tokens/token-repository';
+import { InfraRepository } from '@/ports/infra/infra-repository';
+import { TokenBalances } from '@/types/index';
+import { tokenMetaData } from '@/ports/infra/mock-data';
 
 describe('token repository', () => {
-  let repository: TokenRepository;
+  let repository: InfraRepository;
   let ports: Ports;
 
   beforeAll(async () => {
     ports = await getPorts();
-    repository = ports.tokenRepository;
+    repository = ports.infraRepository;
   });
 
   describe('getTokenBalances', () => {
@@ -34,6 +35,26 @@ describe('token repository', () => {
               tokenBalance: expect.any(String) } ],
           ) }),
         );
+      });
+    });
+  });
+
+  describe('getTokenMetaData', () => {
+    describe('a valid contract address is provided', () => {
+      const contractAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7';
+
+      it('returns the contracts meta data', async () => {
+        expect(await repository.getTokenMetaData(contractAddress))
+          .toEqual(tokenMetaData[0].tokenMetaData);
+      });
+
+      it('returns null properties if the contract is not found', async () => {
+        expect(await repository.getTokenMetaData('some_contract')).toEqual({
+          decimals: null,
+          logo: null,
+          name: null,
+          symbol: null,
+        });
       });
     });
   });
