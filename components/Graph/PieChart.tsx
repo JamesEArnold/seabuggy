@@ -1,4 +1,4 @@
-import { TokenBalance, TokenBalances } from '@/types/token';
+import { TokenBalance, TokenBalances } from '@/types/index';
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
