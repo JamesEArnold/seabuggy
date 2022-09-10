@@ -3,7 +3,7 @@ import { InfraRepository } from '@/ports/infra/infra-repository';
 import { TokenBalances } from '@/types/index';
 import { tokenMetaData } from '@/ports/infra/mock-data';
 
-describe('token repository', () => {
+describe('infra repository', () => {
   let repository: InfraRepository;
   let ports: Ports;
 
