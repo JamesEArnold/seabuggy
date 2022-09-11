@@ -29,7 +29,7 @@ const conditionalButtonClasses = (button: NavButton): string => classNames('px-3
 
 export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => (
   <>
-    <div className="bg-sea-white-100 dark:bg-sea-blue-500">
+    <div className="transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden text-sea-blue-300 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100">

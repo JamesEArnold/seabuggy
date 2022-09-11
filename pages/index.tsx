@@ -1,4 +1,4 @@
-import { Nav, Notification, PieChart } from '@/components';
+import { Nav, Notification, WalletForm } from '@/components';
 import { UseThemeI, useTheme } from '@/components/hooks/useTheme';
 import useSwrImmutable from 'swr';
 
@@ -13,11 +13,12 @@ export default function Web () {
 
   if (mounted && tokenBalances !== undefined) {
     return (
-      <div className={lightTheme ? 'light' : 'dark'}>
-        <div className="min-h-screen bg-sea-white-100 dark:bg-sea-blue-500">
+      <div className={lightTheme ? 'transition-all duration-500 light' : 'transition-all duration-500 dark'}>
+        <div className="min-h-screen transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
           <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
           <Notification />
-          <PieChart chartData={tokenBalances.body} />
+          <WalletForm />
+          {/* <PieChart chartData={tokenBalances.body} /> */}
         </div>
       </div>
     );
