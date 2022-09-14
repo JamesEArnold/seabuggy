@@ -16,8 +16,10 @@ export default function Web () {
       <div className={lightTheme ? 'transition-all duration-500 light' : 'transition-all duration-500 dark'}>
         <div className="min-h-screen transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
           <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
-          <Notification />
-          <WalletForm />
+          <Notification content="Welcome to SeaBuggy! 🎉" dismissTime={6000}/>
+          <div className="h-screen mt-10">
+            <WalletForm />
+          </div>
           {/* <PieChart chartData={tokenBalances.body} /> */}
         </div>
       </div>
