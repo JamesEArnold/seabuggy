@@ -9,6 +9,8 @@ module.exports = {
       animation: {
         toggleTheme: 'toggleTheme 350ms ease-in-out 1',
         toggleThemeReverse: 'toggleThemeReverse 350ms ease-in-out 1',
+        loadingLine: 'loadingLine 6s ease-in 1',
+        slideOutTop: 'slideOutTop 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
       },
       keyframes: {
         toggleTheme: {
@@ -20,6 +22,36 @@ module.exports = {
           '0%': { left: '0px' },
           '60%': { left: '0px', width: '28px' },
           '100%': { left: '16px' },
+        },
+        loadingLine: {
+          '0%': {
+            width: '100%',
+          },
+          '100%': {
+            width: '5px',
+          },
+        },
+        slideOutTop: {
+          '0%': {
+            '-webkit-transform': 'translateY(10px)',
+            transform: 'translateY(10px)',
+            opacity: 1,
+          },
+          '12%': {
+            '-webkit-transform': 'translateY(20px)',
+            transform: 'translateY(20px)',
+            opacity: 1,
+          },
+          '25%': {
+            '-webkit-transform': 'translateY(0px)',
+            transform: 'translateY(0px)',
+            opacity: 1,
+          },
+          '100%': {
+            '-webkit-transform': 'translateY(-1000px)',
+            transform: 'translateY(-1000px)',
+            opacity: 0,
+          },
         },
       },
       colors: {
