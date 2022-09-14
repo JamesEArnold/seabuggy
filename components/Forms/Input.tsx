@@ -41,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // TODO: Add dynamic width so the text field expands on focus
     className={classNames([
-      'pl-7 hover:transition-all ease-in-out duration-500 transition-all h-12 w-72 md:w-1/3 rounded-lg font-normal bg-transparent dark:text-white border text-gray-600 border-gray-300 hover:border-gray-400 dark:hover:border-gray-200 dark:focus:border-gray-200  dark:bg-gray-900 outline-none',
+      'pl-7 transition-all hover:transition-all ease-in-out duration-500  h-12 w-72 md:w-1/3 rounded-lg font-normal bg-transparent dark:text-white border text-gray-600 border-gray-300 hover:border-gray-400 dark:border-gray-400 dark:hover:border-gray-200 dark:focus:border-gray-200  dark:bg-gray-900 outline-none',
       sizeMap[size],
       className,
     ])}
