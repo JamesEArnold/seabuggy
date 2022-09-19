@@ -1,9 +1,11 @@
-# SeaBuggy
-SeaBuggy is a Web3 dashboard.
+# Seabuggy
+Seabuggy is a Web3 dashboard.
+
+An agile project that is tracked using [Linear](https://linear.app/seabuggy/team/SEA/active)
 
 ## Installation
 
-Use [npm](https://www.npmjs.com/) to install SeaBuggy.
+Use [npm](https://www.npmjs.com/) to install Seabuggy.
 
 ```bash
 npm install
@@ -11,7 +13,7 @@ npm install
 
 ## Usage
 
-Start SeaBuggy using the following npm command:
+Start Seabuggy using the following npm command:
 
 ```bash
 npm run dev
@@ -19,7 +21,7 @@ npm run dev
 
 ## Environment variables
 
-Load the following environment variables for `SeaBuggy` into a `.env.local` file <br />
+Load the following environment variables for `Seabuggy` into a `.env.local` file <br />
 Path: `.env.local`
 
 | Environment Variable  | Description  | Example |
