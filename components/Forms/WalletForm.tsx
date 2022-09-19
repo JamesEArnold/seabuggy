@@ -1,6 +1,14 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import { ValidationRule, useForm } from 'react-hook-form';
 import { FormInput } from '@/components/Forms/FormInput';
-import React from 'react';
+import { TokenBalances } from '@/types/index';
+import useSwr from 'swr';
+
+export type WalletFormProps = {
+  setWalletBalances: Dispatch<SetStateAction<TokenBalances | undefined>>;
+  setWalletAddress: Dispatch<SetStateAction<string | undefined>>;
+  walletAddress: string | undefined;
+}
 
 export type WalletFormFields = {
   walletAddress: string;
@@ -11,18 +19,26 @@ const walletAddressPattern: ValidationRule<RegExp> = {
   message: 'Enter a valid Ethereum wallet address',
 };
 
-export const WalletForm = () => {
+const fetcher = (url: string, walletAddress: string) => fetch(`${url}/${walletAddress}`).then((res) => res.json());
+
+export const WalletForm = ({
+  setWalletBalances,
+  setWalletAddress,
+  walletAddress,
+}: WalletFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<WalletFormFields>();
 
-  const onValidSubmit = (data: WalletFormFields) => {
-    console.log('submitting...', data);
+  const { data: walletBalanceResponse }: { data?: TokenBalances } = useSwr<TokenBalances, any>(walletAddress ? [ '/api/get-token-balances', walletAddress ] : null, fetcher);
+  setWalletBalances(walletBalanceResponse);
+  const useWalletData = async (walletAddress: WalletFormFields) => {
+    setWalletAddress(walletAddress.walletAddress);
   };
 
-  const onSubmit = handleSubmit(onValidSubmit);
+  const onSubmit = handleSubmit(useWalletData);
 
   return <div className=''>
     <form onSubmit={onSubmit}>
