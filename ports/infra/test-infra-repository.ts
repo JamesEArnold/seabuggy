@@ -5,10 +5,19 @@ import { InfraRepository } from '@/ports/infra/infra-repository';
 
 const getProvider = async (): Promise<Provider> => ({} as Provider);
 
-const getTokensByWalletAddress = async (walletAddress: string): Promise<TokenBalances> => ({
-  address: walletAddress,
-  tokenBalances,
-});
+const getTokensByWalletAddress = async (walletAddress: string): Promise<TokenBalances> => {
+  if (walletAddress === 'badWalletAddress') {
+    return {
+      address: walletAddress,
+      tokenBalances: [],
+    };
+  } else {
+    return {
+      address: walletAddress,
+      tokenBalances,
+    };
+  }
+};
 
 const getTokenMetaData = async (contractAddress: string): Promise<TokenMetaData> => {
   const noTokenMetaData: TokenMetaData = {
