@@ -26,19 +26,21 @@ export default function Web () {
       </div>
     );
   } else if (mounted && walletBalances) {
-    <div className={lightTheme ? 'transition-all duration-500 light' : 'transition-all duration-500 dark'}>
-      <div className="min-h-screen transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
-        <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
-        <PieChart chartData={walletBalances} />
-        <div className="h-screen mt-10">
-          <WalletForm
-            setWalletBalances={setWalletBalances}
-            setWalletAddress={setWalletAddress}
-            walletAddress={walletAddress}
-          />
+    return (
+      <div className={lightTheme ? 'transition-all duration-500 light' : 'transition-all duration-500 dark'}>
+        <div className="min-h-screen transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
+          <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
+          <PieChart chartData={walletBalances} />
+          <div className="h-screen mt-10">
+            <WalletForm
+              setWalletBalances={setWalletBalances}
+              setWalletAddress={setWalletAddress}
+              walletAddress={walletAddress}
+            />
+          </div>
         </div>
       </div>
-    </div>;
+    );
   } else {
     return null;
   }
