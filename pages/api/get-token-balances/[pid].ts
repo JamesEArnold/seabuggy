@@ -8,20 +8,31 @@ const handler = async (
   res: NextApiResponse,
 ): Promise<void> => {
   await NextCors(req, res, {
-    methods: [ 'GET', 'POST' ],
+    methods: [ 'GET' ],
     origin: '*',
     optionsSuccessStatus: 200,
   });
 
+  const { pid } = req.query;
+
   try {
     const ports: Ports = await getPorts();
-    const response: TokenBalances = await ports.infraRepository.getTokensByWalletAddress('0x00000000219ab540356cbb839cbe05303d7705fa');
-    res.send({
-      status: 200,
-      body: {
-        ...response,
-      },
-    });
+    let response: TokenBalances;
+    if (typeof pid === 'string') {
+      response = await ports.infraRepository.getTokensByWalletAddress(pid);
+      if (response.tokenBalances.length === 0) {
+        res.send({
+          statusCode: 404,
+        });
+        return;
+      }
+      res.send({
+        statusCode: 200,
+        body: {
+          ...response,
+        },
+      });
+    }
   } catch (error) {
     res.send({
       status: 500,
