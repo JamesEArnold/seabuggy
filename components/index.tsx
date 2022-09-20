@@ -2,7 +2,7 @@
 export * from './Forms';
 export * from './Graph';
 export * from './Notification';
-export * from './Nav';
+export * from './Nav/Nav';
 export * from './ToggleTheme';
 export * as logo from './resources/seabuggy_logo.png';
 export * as profilePic from './resources/profilePictures/profile1.png';
