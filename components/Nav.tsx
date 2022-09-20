@@ -36,9 +36,9 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden text-sea-blue-300 hover:text-sea-blue-900 dark:text-sea-white-400 dark:hover:text-sea-white-100">
             <a href='#' className="h-8 w-8 flex items-center" onClick={() => setMobileMenu(!mobileMenu)}>
-              <span className={classNames([ mobileMenu ? 'h-0 after:rotate-45 after:top-0 before:-bottom-0.5 before:-rotate-45' : 'h-0.5', 'bg-white rounded-full w-full absolute transition-all duration-100',
-                'after:bg-white after:rounded-full after:h-0.5 after:w-full after:absolute after:transition-all after:duration-100 after:-top-2',
-                'before:bg-white before:rounded-full before:h-0.5 before:w-full before:absolute before:-bottom-2' ])}></span>
+              <span className={classNames([ mobileMenu ? 'h-0 after:rotate-45 after:top-0 before:-bottom-0.5 before:-rotate-45' : 'h-0.5 after:-top-2 before:-bottom-2', 'bg-white rounded-full w-full absolute transition-all duration-100',
+                'after:bg-white after:rounded-full after:h-0.5 after:w-full after:absolute after:transition-all after:duration-100',
+                'before:bg-white before:rounded-full before:h-0.5 before:w-full before:absolute' ])}></span>
             </a>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
