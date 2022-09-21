@@ -1,12 +1,14 @@
+import { NotificationContext, TokenBalances } from '@/types/index';
 import React, { Dispatch, SetStateAction } from 'react';
 import { ValidationRule, useForm } from 'react-hook-form';
 import { FormInput } from '@/components/Forms/FormInput';
-import { TokenBalances } from '@/types/index';
 import useSwr from 'swr';
 
 export type WalletFormProps = {
   setWalletBalances: Dispatch<SetStateAction<TokenBalances | undefined>>;
   setWalletAddress: Dispatch<SetStateAction<string | undefined>>;
+  setNotificationContext: Dispatch<SetStateAction<NotificationContext | undefined>>;
+  setShowAlert: Dispatch<SetStateAction<boolean>>;
   walletAddress: string | undefined;
 }
 
@@ -19,11 +21,27 @@ const walletAddressPattern: ValidationRule<RegExp> = {
   message: 'Enter a valid Ethereum wallet address',
 };
 
-const fetcher = (url: string, walletAddress: string) => fetch(`${url}/${walletAddress}`).then((res) => res.json());
+const fetcher = (
+  url: string,
+  walletAddress: string,
+  setNotificationContext: Dispatch<SetStateAction<NotificationContext | undefined>>,
+  setShowAlert: Dispatch<SetStateAction<boolean>>,
+  setWalletBalances: Dispatch<SetStateAction<TokenBalances | undefined>>,
+) => fetch(`${url}/${walletAddress}`).then((res) => {
+  if (!res.ok) {
+    setNotificationContext({ content: 'No balances found 🕵️‍♂️', timerInMs: 6000, backgroundColor: 'bg-slate-100' });
+    setShowAlert(true);
+    return;
+  }
+  setWalletBalances(res.json() as unknown as TokenBalances);
+  return {} as TokenBalances;
+});
 
 export const WalletForm = ({
   setWalletBalances,
   setWalletAddress,
+  setNotificationContext,
+  setShowAlert,
   walletAddress,
 }: WalletFormProps) => {
   const {
@@ -32,8 +50,7 @@ export const WalletForm = ({
     formState: { errors },
   } = useForm<WalletFormFields>();
 
-  const { data: walletBalanceResponse }: { data?: TokenBalances } = useSwr<TokenBalances, any>(walletAddress ? [ '/api/get-token-balances', walletAddress ] : null, fetcher);
-  setWalletBalances(walletBalanceResponse);
+  useSwr(walletAddress ? [ '/api/get-token-balances', walletAddress, setNotificationContext, setShowAlert, setWalletBalances ] : null, fetcher);
   const useWalletData = async (walletAddress: WalletFormFields) => {
     setWalletAddress(walletAddress.walletAddress);
   };
