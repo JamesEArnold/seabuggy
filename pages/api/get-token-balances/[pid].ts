@@ -21,13 +21,11 @@ const handler = async (
     if (typeof pid === 'string') {
       response = await ports.infraRepository.getTokensByWalletAddress(pid);
       if (response.tokenBalances.length === 0) {
-        res.send({
-          statusCode: 404,
-        });
+        res.statusCode = 404;
+        res.send({});
         return;
       }
       res.send({
-        statusCode: 200,
         body: {
           ...response,
         },
