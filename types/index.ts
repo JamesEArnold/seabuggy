@@ -4,6 +4,12 @@ import {
 } from 'ethers';
 import { AlchemyProvider } from 'alchemy-sdk';
 
+export interface NotificationContext {
+  content: string,
+  timerInMs: number,
+  backgroundColor: string,
+}
+
 export interface TokenBalance {
   contractAddress: string,
   tokenBalance: string | null,
