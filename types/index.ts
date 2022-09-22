@@ -10,6 +10,12 @@ export interface NotificationContext {
   backgroundColor: string,
 }
 
+export interface NavButton {
+  name: string;
+  href: string;
+  current: boolean;
+}
+
 export interface TokenBalance {
   contractAddress: string,
   tokenBalance: string | null,
