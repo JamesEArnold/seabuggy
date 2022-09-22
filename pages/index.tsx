@@ -22,7 +22,7 @@ export default function Web () {
             showAlert={showAlert}
             setShowAlert={setShowAlert}
           />
-          <div className="h-screen mt-10">
+          <div className="mt-10">
             <WalletForm
               setWalletBalances={setWalletBalances}
               setWalletAddress={setWalletAddress}
@@ -41,7 +41,7 @@ export default function Web () {
         <div className="min-h-screen transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
           <Nav setLightTheme={setLightTheme} lightTheme={lightTheme} />
           <PieChart chartData={walletBalances} />
-          <div className="h-screen mt-10">
+          <div className="mt-10">
             <WalletForm
               setWalletBalances={setWalletBalances}
               setWalletAddress={setWalletAddress}
