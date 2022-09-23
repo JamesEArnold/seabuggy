@@ -12,8 +12,12 @@ module.exports = {
         loadingLine: 'loadingLine 6s ease-in 1',
         slideOutTop: 'slideOutTop 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
         slideDownTop: 'slideDownTop 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
+        slideMobileMenuIn: 'slideMobileMenuIn 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
+        slideMobileMenuOut: 'slideMobileMenuOut 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
       },
       keyframes: {
+
+        // Theme Toggle Animations
         toggleTheme: {
           '0%': { left: '16px', width: '20px' },
           '60%': { left: '8px', width: '28px' },
@@ -24,6 +28,8 @@ module.exports = {
           '60%': { left: '0px', width: '28px' },
           '100%': { left: '16px' },
         },
+
+        // Notifiction time until dismiss
         loadingLine: {
           '0%': {
             width: '100%',
@@ -32,6 +38,8 @@ module.exports = {
             width: '5px',
           },
         },
+
+        // Notification exit
         slideOutTop: {
           '0%': {
             '-webkit-transform': 'translateY(10px)',
@@ -54,6 +62,8 @@ module.exports = {
             opacity: 0,
           },
         },
+
+        // Notification entrance
         slideDownTop: {
           '0%': {
             '-webkit-transform': 'translateY(-75px)',
@@ -78,6 +88,34 @@ module.exports = {
           '100%': {
             '-webkit-transform': 'translateY(10px)',
             transform: 'translateY(10px)',
+            opacity: 1,
+          },
+        },
+
+        // Mobile Menu entrance
+        slideMobileMenuIn: {
+          '0%': {
+            '-webkit-transform': 'translateY(-1000px)',
+            transform: 'translateY(-1000px)',
+            opacity: 1,
+          },
+          '100%': {
+            '-webkit-transform': 'translateY(0)',
+            transform: 'translateY(0)',
+            opacity: 1,
+          },
+        },
+
+        // Mobile Menu exit
+        slideMobileMenuOut: {
+          '0%': {
+            '-webkit-transform': 'translateY(0)',
+            transform: 'translateY(0)',
+            opacity: 1,
+          },
+          '100%': {
+            '-webkit-transform': 'translateY(-1000px)',
+            transform: 'translateY(-1000px)',
             opacity: 1,
           },
         },
