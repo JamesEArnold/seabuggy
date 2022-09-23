@@ -41,10 +41,10 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
                 <Image src={logo} alt="logo" height="32px" width="35px" />
               </div>
               <div className="hidden lg:block h-8 w-auto dark:hidden">
-                <Image src={logoFull} alt="full logo" objectFit='cover' width="143px" height="32px"  />
+                <Image src={logoFull} alt="Light Seabuggy logo" objectFit='cover' width="143px" height="32px"  data-cy="light-full-logo"/>
               </div>
               <div className="hidden dark:lg:block h-8 w-auto">
-                <Image src={logoFullDark} alt="full logo"  width="143px" height="32px"/>
+                <Image src={logoFullDark} alt="Dark Seabuggy logo"  width="143px" height="32px" data-cy="dark-full-logo"/>
               </div>
             </div>
             <div className="hidden sm:block sm:ml-6">
