@@ -89,7 +89,6 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
         </div>
       </div>
       <MobileMenu
-        conditionalButtonClasses={conditionalButtonClasses}
         isMobileMenuOpen={isMobileMenuOpen}
         navButtons={navButtons}
       />
