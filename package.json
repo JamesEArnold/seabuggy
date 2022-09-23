@@ -9,7 +9,8 @@
     "lint": "next lint --dir .",
     "tf-next": "tf-next build",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "test:cypress": "cypress run"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
@@ -40,8 +41,10 @@
     "@typescript-eslint/parser": "^5.22.0",
     "autoprefixer": "^10.4.7",
     "babel-jest": "^28.1.1",
+    "cypress": "^10.8.0",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
+    "eslint-plugin-cypress": "^2.12.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
