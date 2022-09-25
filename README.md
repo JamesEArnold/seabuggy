@@ -84,5 +84,28 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Testing
+
+### Unit tests
+This project uses [Jest](https://jestjs.io/) for it's unit testing.  Please add tests surrounding any business logic and these tests should describe the business logic required.  Unit tests will utilize the mock-ports that are implemented and not make real calls to outside services.  These tests are also executed as part of CI when making a pull-request.
+
+Execute the unit tests with:
+```bash
+npm run test
+```
+
+### Cypress tests
+This project uses [Cypress](https://www.cypress.io/) for its automated acceptance testing.  Any changes to the UI that impact user experience should be added as a Cypress test.  The server will need to be started prior to executing the Cypress tests.  The Cypress tests will also be executed as a part of CI when making a pull-request.
+
+If it is your first time using Cypress on your machine you will need to install Cypress - execute the command:
+```bash
+npx cypress open
+```
+
+From here you can run the tests in headless mode using the command:
+```bash
+npm run test:cypress
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
