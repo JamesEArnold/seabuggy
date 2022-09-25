@@ -7,15 +7,18 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  test:
+  install-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Cache node modules and next folder
       - name: 📬 Caching
-        uses: actions/cache@v2
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
           path: |
             **/node_modules
@@ -23,9 +26,14 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
 
       - name: 🧰 Install dependencies
         run: npm ci
@@ -33,8 +41,77 @@ jobs:
       - name: 📦 Build project
         run: npm run build
 
+  lint-and-test:
+    runs-on: ubuntu-latest
+    needs: install-and-build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📬 Caching
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            **/node_modules
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: 🧹 Run lint
         run: npm run lint
 
       - name: 🐛 Run tests
         run: npm run test:ci
+
+  cypress-tests:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.13.0-chrome95-ff94
+      options: --user 1001
+    needs: install-and-build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📬 Caching
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            **/node_modules
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 🧰 Install Cypress
+        run: npx cypress info
+
+      - name: 🧰 Install Next
+        run: npm ci
+
+      - name: 🧪 Cypress Tests
+        uses: cypress-io/github-action@v4
+        with:
+          start: npm run test:cypress
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
+          browser: chrome
+          spec: cypress/e2e/**/*
+          config-file: cypress.config.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: "cypress:server:args"
