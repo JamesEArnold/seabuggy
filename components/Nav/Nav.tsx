@@ -28,7 +28,10 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
   const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false);
 
   return <>
-    <div className="transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500">
+    <div
+      className="transition-all duration-500 bg-sea-white-100 dark:bg-sea-blue-500"
+      data-cy="nav-container"
+    >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <MobileMenuButton
@@ -48,13 +51,14 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
               </div>
             </div>
             <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
+              <div className="flex space-x-4" data-cy="nav-links">
                 {navButtons.map((button, index) => (
                   <a
                     key={index}
                     href={button.href}
                     className={conditionalButtonClasses(button)}
                     aria-current={button.current ? 'page' : undefined}
+                    data-cy={`nav-link-${button.name}`}
                   >
                     {button.name}
                   </a>
@@ -68,13 +72,17 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
             </div>
             <button
               type="button"
+              data-cy="nav-notification"
               className="p-1 text-sea-blue-300 focus:text-sea-blue-500 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500 dark:text-sea-white-300 dark:focus:text-sea-white-100 transition-all duration-300"
             >
               <span className="sr-only">View notifications</span>
               <Bell className="h-6 w-6" aria-hidden="true" />
             </button>
             <div className="ml-3 relative">
-              <button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500 transition-all duration-300">
+              <button
+                data-cy="nav-user-profile"
+                className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sea-blue-500 focus:ring-sea-white-100 dark:bg-sea-blue-500 transition-all duration-300"
+              >
                 <span className="sr-only">Open user menu</span>
                 <div className="h-8 w-8 rounded-full">
                   <Image
