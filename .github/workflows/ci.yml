@@ -106,7 +106,7 @@ jobs:
       - name: 🧪 Cypress Tests
         uses: cypress-io/github-action@v4
         with:
-          start: npm run test:cypress
+          start: npm run test:ci:cypress
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
