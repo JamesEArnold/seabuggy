@@ -10,7 +10,7 @@
     "tf-next": "tf-next build",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "test:cypress": "cypress run"
+    "test:cypress": "npm run dev && cypress run"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
