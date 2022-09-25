@@ -102,6 +102,11 @@ If it is your first time using Cypress on your machine you will need to install 
 npx cypress open
 ```
 
+Start the project so that Cypress can access the running page:
+```bash
+npm run dev
+```
+
 From here you can run the tests in headless mode using the command:
 ```bash
 npm run test:cypress
