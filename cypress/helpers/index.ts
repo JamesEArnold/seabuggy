@@ -4,3 +4,5 @@ export const hexToRgb = (hex: string): string => {
   const bValue = parseInt(hex.substring(4), 16);
   return `rgb(${rValue}, ${gValue}, ${bValue})`;
 };
+
+export const getDataCy = (dataTag: string): string => `[data-cy="${dataTag}"]`;
