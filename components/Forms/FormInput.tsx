@@ -45,7 +45,10 @@ export const FormInput = <FormValues extends Record<string, unknown>>({
         render={({ message }) => (
 
           // TODO: Change error message styling
-          <p className="mt-1 font-serif text-sm block text-red-600">
+          <p
+            data-cy="form-input-error-message"
+            className="mt-1 font-serif text-sm block text-red-600"
+          >
             {message}
           </p>
         )}

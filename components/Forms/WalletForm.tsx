@@ -65,6 +65,7 @@ export const WalletForm = ({
         name="walletAddress"
         label="Wallet Address"
         placeholder="Wallet Address"
+        data-cy="form-wallet-address"
         register={register}
         rules={{ required: 'Please enter a valid Ethereum wallet address.', maxLength: { value: 42, message: 'Please provide a valid address' }, pattern: walletAddressPattern }}
         errors={errors}
@@ -72,6 +73,7 @@ export const WalletForm = ({
       <button
         className="flex mt-5 mx-auto text-base font-medium bg-sea-foam-blue-500 hover:bg-sea-foam-blue-600 text-white cursor-pointer px-7 py-3 rounded-3xl transition-all hover:transition-all ease-in-out hover:duration-300 duration-300"
         type="submit"
+        data-cy="form-wallet-submit"
       >
         Submit
       </button>
