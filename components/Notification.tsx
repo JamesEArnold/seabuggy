@@ -51,6 +51,7 @@ export const Notification = ({
   return showAlert && notificationContext
     ? <div
       onClick={() => animateNotificationAndDismiss()}
+      data-cy="notification"
       className={classNames([ slideOut ? 'animate-slideOutTop' : 'animate-slideDownTop', 'fixed left-0 right-0 w-80 sm:max-w-md sm:w-1/2 mx-auto flex space-x-2 justify-center cursor-pointer' ])}
     >
       <div
