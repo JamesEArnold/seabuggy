@@ -1,23 +1,26 @@
-import { hexToRgb } from '../../helpers';
+import { getDataCy, hexToRgb } from '../../helpers';
 
 describe('desktop navbar', () => {
+  beforeEach(() => {
+    cy.viewport('macbook-16');
+  });
+
   describe('common elements', () => {
     it('contains navigation links', () => {
       cy.visit('http://localhost:3000/');
-      cy.viewport('macbook-16');
-      cy.get('[data-cy="nav-links"]').should('be.visible');
+      cy.get(getDataCy('nav-links')).should('be.visible');
     });
 
     it('contains toggle to change the theme from light to dark', () => {
-      cy.get('[data-cy="nav-toggle-theme"]').should('be.visible');
+      cy.get(getDataCy('nav-toggle-theme')).should('be.visible');
     });
 
     it('contains the notifications button', () => {
-      cy.get('[data-cy="nav-notification"]').should('be.visible');
+      cy.get(getDataCy('nav-notification')).should('be.visible');
     });
 
     it('contains the user profile button', () => {
-      cy.get('[data-cy="nav-user-profile"]').should('be.visible');
+      cy.get(getDataCy('nav-user-profile')).should('be.visible');
     });
   });
 
@@ -25,20 +28,19 @@ describe('desktop navbar', () => {
     describe('dark theme', () => {
       it('should have the full seabuggy logo', () => {
         cy.visit('http://localhost:3000/');
-        cy.viewport('macbook-16');
-        cy.get('[data-cy="dark-full-logo"]').should('have.attr', 'alt', 'Dark Seabuggy logo').should('be.visible');
+        cy.get(getDataCy('dark-full-logo')).should('have.attr', 'alt', 'Dark Seabuggy logo').should('be.visible');
       });
 
       it('has a dark background color', () => {
-        cy.get('[data-cy="nav-container"]').should('have.css', 'background-color', hexToRgb('232946'));
+        cy.get(getDataCy('nav-container')).should('have.css', 'background-color', hexToRgb('232946'));
       });
 
       it('has the active color on the dashboard button', () => {
-        cy.get('[data-cy="nav-link-Dashboard"]').should('have.css', 'background-color', hexToRgb('15192A'));
+        cy.get(getDataCy('nav-link-Dashboard')).should('have.css', 'background-color', hexToRgb('15192A'));
       });
 
       it('has the toggle theme button styled for dark theme', () => {
-        cy.get('[data-cy="nav-toggle-theme"]').should('have.css', 'background-color', hexToRgb('a6aed4'))
+        cy.get(getDataCy('nav-toggle-theme')).should('have.css', 'background-color', hexToRgb('a6aed4'))
           .should('have.css', 'border-color', hexToRgb('767b97'));
       });
     });
@@ -46,24 +48,22 @@ describe('desktop navbar', () => {
     describe('light theme', () => {
       it('switches to light theme when using the toggle theme component', () => {
         cy.visit('http://localhost:3000/');
-        cy.viewport('macbook-16');
-        cy.get('[data-cy="nav-toggle-theme"]').click();
-        cy.get('[data-cy="nav-container"]').should('have.css', 'background-color', hexToRgb('FFFFFE'));
+        cy.get(getDataCy('nav-toggle-theme')).click();
+        cy.get(getDataCy('nav-container')).should('have.css', 'background-color', hexToRgb('FFFFFE'));
       });
 
       it('should have the full seabuggy logo', () => {
         cy.visit('http://localhost:3000/');
-        cy.viewport('macbook-16');
-        cy.get('[data-cy="nav-toggle-theme"]').click();
-        cy.get('[data-cy="light-full-logo"]').should('have.attr', 'alt', 'Light Seabuggy logo').should('be.visible');
+        cy.get(getDataCy('nav-toggle-theme')).click();
+        cy.get(getDataCy('light-full-logo')).should('have.attr', 'alt', 'Light Seabuggy logo').should('be.visible');
       });
 
       it('has the active color on the dashboard button', () => {
-        cy.get('[data-cy="nav-link-Dashboard"]').should('have.css', 'background-color', hexToRgb('0065CB'));
+        cy.get(getDataCy('nav-link-Dashboard')).should('have.css', 'background-color', hexToRgb('0065CB'));
       });
 
       it('has the toggle theme button styled for light theme', () => {
-        cy.get('[data-cy="nav-toggle-theme"]').should('have.css', 'background-color', hexToRgb('97D7E0'))
+        cy.get(getDataCy('nav-toggle-theme')).should('have.css', 'background-color', hexToRgb('97D7E0'))
           .should('have.css', 'border-color', hexToRgb('61949b'));
       });
     });
