@@ -40,8 +40,8 @@ export const Nav = ({ setLightTheme, lightTheme }: NavProps): ReactElement => {
           />
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0 flex items-center">
-              <div className="block lg:hidden h-8 w-auto">
-                <Image src={logo} alt="logo" height="32px" width="35px" />
+              <div  className="block lg:hidden h-8 w-auto">
+                <Image src={logo} alt="Mobile Seabuggy logo" height="32px" width="35px"data-cy="nav-mobile-logo" />
               </div>
               <div className="hidden lg:block h-8 w-auto dark:hidden">
                 <Image src={logoFull} alt="Light Seabuggy logo" objectFit='cover' width="143px" height="32px"  data-cy="light-full-logo"/>
